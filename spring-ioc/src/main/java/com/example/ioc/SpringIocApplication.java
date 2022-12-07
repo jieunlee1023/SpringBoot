@@ -28,6 +28,7 @@ public class SpringIocApplication {
 		
 		MyEncoder encoder = context.getBean(MyEncoder.class);
 		
+		
 		// 변경처리
 		encoder.setIEncoder(base64Encoder);
 		String result = encoder.encode(myUrl);

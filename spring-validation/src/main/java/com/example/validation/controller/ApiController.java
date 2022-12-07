@@ -20,7 +20,7 @@ import com.example.validation.dto.User;
 
 @RestController
 @RequestMapping("/api")
-@Validated //<-get 방식일 때 반드시 추가!!!
+//@Validated //<-get 방식일 때 반드시 추가!!!
 public class ApiController {
 
 	@PostMapping("/user")
@@ -29,20 +29,23 @@ public class ApiController {
 	public ResponseEntity<?> user(@Valid @RequestBody User user, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors() == true) {
+			System.out.println("1");
 			StringBuffer sb = new StringBuffer();
 			bindingResult.getAllErrors().forEach((error) -> {
 				FieldError filed = (FieldError) error;
 				String msg = error.getDefaultMessage();
-//				System.out.println("field : " + filed.getField());
-//				System.out.println("msg : " + msg);
+				System.out.println(sb.toString());
+				System.out.println("field : " + filed.getField());
+				System.out.println("msg : " + msg);
 
 				sb.append("field : " + filed.getField() + "\n");
 				sb.append("msg : " + msg + "\n");
+				
 
 			});
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sb.toString());
 		}
-
+  
 		// 예전 방식
 //		if (user.getAge() < 1 || user.getAge() > 100) {
 //			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user);

@@ -12,5 +12,9 @@ spring:
     password: 1q2w3e4r5t!
     
     
-    
-    
+jpa:
+  open-in-veiw:
+  hibernate:
+    ddl-auto: create
+    naming:
+     ph
